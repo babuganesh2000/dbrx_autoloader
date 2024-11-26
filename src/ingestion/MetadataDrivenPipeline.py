@@ -56,6 +56,16 @@ class MetadataDrivenPipeline:
         else:
             # Write as a new Delta table if it doesn't exist
             df.write.format("delta").mode("overwrite").save(delta_table_path)
+            
+    def _archive_files(self, source_container, table_name, archive_folder):
+        """
+        Archive processed files.
+        """
+        # Copy files to archive (pseudo-code; implement using ADLS SDK or Databricks utilities)
+        self.spark.conf.set("fs.azure.account.key.<storage_account>.dfs.core.windows.net", "<account_key>")
+        archive_path = f"abfss://{source_container}.dfs.core.windows.net/{archive_folder}"
+        processed_path = f"abfss://{source_container}.dfs.core.windows.net/{table_name}/processed"
+        self.spark.fs.mv(processed_path, archive_path)
 
     def run_workflow_for_entity(self, entity_name: str):
         """
