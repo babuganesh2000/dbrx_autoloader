@@ -1,0 +1,20 @@
+[
+  {
+      "source_group": "Group1",
+      "table_name": "Customer",
+      "key_column": "CustomerID",
+      "increment_column": "LastModifiedDate",
+      "source_container": "source-container",
+      "archive_folder": "archive/customer",
+      "target_table": "delta.customer"
+  },
+  {
+      "source_group": "Group2",
+      "table_name": "Orders",
+      "key_column": "OrderID",
+      "increment_column": "OrderDate",
+      "source_container": "source-container",
+      "archive_folder": "archive/orders",
+      "target_table": "delta.orders"
+  }
+]
